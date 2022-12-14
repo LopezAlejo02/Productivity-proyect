@@ -1,0 +1,51 @@
+:root {
+    --primary: #111B54;
+    --light: #ffffff;
+    --grey:#efefef;
+}
+
+body{
+    overflow: hidden;
+    font-family: 'Muli', sans-serif;
+    font-weight: 300;
+    color: var(--primary);
+}
+
+.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+#sidebar-container{
+    min-height: 100vh;
+    min-width: 20vh;
+}
+
+#sidebar-container .logo{
+    padding: .875rem 1.25rem;
+}
+
+#sidebar-container .menu{
+    width: 18rem;
+}
+
+#content{
+    overflow-y: auto;
+    height: 100vh;
+    padding-bottom: 5rem;
+}
+
+#Valores_Proyectos{
+    width: 50vw;
+}
+
+.indicador{
+    border-right: 1px solid var(--grey) ;
+}
+
+#column{
+    width: 50vw;
+}
