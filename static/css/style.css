@@ -1,51 +1,104 @@
 :root {
-    --primary: #111B54;
-    --light: #ffffff;
-    --grey:#efefef;
+    --border: rgb(134, 134, 134);
+    --text: #ababab;
+    --bg_content:rgba(143, 143, 143, 0.2);
 }
 
+
+
 body{
-    overflow: hidden;
     font-family: 'Muli', sans-serif;
     font-weight: 300;
     color: var(--primary);
+    background-image: url("https://www.teahub.io/photos/full/44-444380_dark-backgrounds-group-cool-dark-colors-background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0%;
+    padding: 0;
+
 }
 
-.bg-primary {
-    background-color: var(--primary) !important;
+.main{
+    display: grid;
+    grid-template-rows: 10vh auto;
 }
 
-a:hover{
-    text-decoration: none;
+.contenedor{
+    display: grid;
+    grid-template-columns: 15% auto;
+    margin: 0.5%;
+    column-gap: 5px;
+    height: 100vh;
 }
 
-#sidebar-container{
+.side-bar{
+    background-color: rgba(143, 143, 143, 0.2);
+    border-style: solid;
+    border-color: var(--border);
+    border-radius: 30px;
+
     min-height: 100vh;
     min-width: 20vh;
+    display: grid;
+    grid-template-rows: 10vh auto;
+    row-gap: 10px;
 }
 
-#sidebar-container .logo{
-    padding: .875rem 1.25rem;
+#titulo-side-bar{
+    text-align: center;
+    color: var(--text);
 }
 
-#sidebar-container .menu{
-    width: 18rem;
+.vistas{
+    padding-top: 2%;
+    display: grid;
+    grid-template-rows: 10vh auto;
+    row-gap: 2px;
 }
 
-#content{
-    overflow-y: auto;
-    height: 100vh;
-    padding-bottom: 5rem;
+.vista{
+    text-align: center;
+    color: var(--text);
 }
 
-#Valores_Proyectos{
-    width: 50vw;
+.content{
+    background-color: var(--bg_content);
+    border-style: solid;
+    border-color: var(--border);
+    border-radius: 30px;
+    padding: 0.5%;
+}
+
+.deploy{
+    display: grid;
+    grid-template-columns: auto 30%;
+}
+
+.cont{
+    border-radius: 30px;
+    display: grid;
+    grid-template-rows: 0.5fr auto;
+}
+
+.card{
+    background-color: var(--bg_content) !important;
+    border-radius: 30px;
 }
 
 .indicador{
-    border-right: 1px solid var(--grey) ;
+    border-right: 1px solid var(--border);
 }
 
-#column{
-    width: 50vw;
+.texto{
+    color: var(--text);
+}
+
+.center{
+    align-content: center;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+body {
+  font-family: Roboto, sans-serif;
 }

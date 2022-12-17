@@ -11,59 +11,64 @@
     <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script>
+      //reception
+      var projects = {{projects_names | tojson }};
+      var tasks = {{project_tasks | tojson }};
+    </script>
     <title>Hello, world!</title>
   </head>
   <body>
-    
-    <div class="d-flex" style="padding: 0%;">
-        <div id="sidebar-container" class="bg-primary">
-            <div class="logo">
-                <h4 class="text-light font-weight-bold">Control</h4>
-            </div>
-            <div class="menu">
-                <a href="#" class="d-block text-light p-3 mr-2"><i class="icon ion-md-stats ml-3 mr-2 lead"></i>Dashboad</a>
-            </div>
+      <div class="contenedor">
+        <div class="side-bar">
+          <div id="titulo-side-bar">
+            <h1>Control</h1>
+          </div>
+          <div class="vistas">
+            <div class="vista">
+              <i class="icon ion-md-stats"></i>
+                Dashboard
+            </div>    
+          </div>
         </div>
-        <div id="content">
-          <section class="py-3">
-            <div class="container" id="Valores_Proyectos">
+        <div class="content">
+          <div class="deploy">
+            <div class="cont">
               <div class="card">
                 <div class="card-body">
-                  <div class="row">
+                  <div class="row" style="justify-content: center;">
                     <div class="col-lg-3 indicador">
-                      <h6 class="text-muted">Hola</h6>
-                      <h3 class="font-weight-bold">Hola</h6>
-                      <h6 class="text-success">Hola</h6>
+                      <h6 class="texto center">Tareas activas</h6>
+                      <h1 class="font-weight-bold">{{active_tasks}}</h1>
                     </div>
                     <div class="col-lg-3 indicador">
-                      <h6 class="text-muted">Hola</h6>
-                      <h3 class="font-weight-bold">Hola</h6>
-                      <h6 class="text-success">Hola</h6>
-                    </div>
-                    <div class="col-lg-3 indicador">
-                      <h6 class="text-muted">Hola</h6>
-                      <h3 class="font-weight-bold">Hola</h6>
-                      <h6 class="text-success">Hola</h6>
+                      <h6 class="texto center">Tareas sin asignar</h6>
+                      <h1 class="font-weight-bold">{{unasigned_tasks}}</h1>
                     </div>
                     <div class="col-lg-3">
-                      <h6 class="text-muted">Hola</h6>
-                      <h3 class="font-weight-bold">Hola</h6>
-                      <h6 class="text-success">50.55%</h6>
+                      <h6 class="texto center">Tareas pendientes día</h6>
+                      <h1 class="font-weight-bold">{{day_tasks}}</h1>
                     </div>
                   </div>
                 </div>
               </div>
+              <div class="card">
+                <div class="card-body" id="chart_bar"></div>
+              </div>
             </div>
-          </section>
+            <div class="card">
+              <div class="card-body" id="chart_donut"></div>
+            </div>
+          </div>
         </div>
-    </div>
-
-
-
+      </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Apexcharts Js -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="/static/Js/Script.js"></script>
   </body>
 </html>

@@ -1,28 +1,65 @@
-import requests
-#Función que retorna los proyectos
-def getProjects(url, token):
-    #La variable url almacena la dirección de la API que vamos consumir
-    #url = 'https://api.todoist.com/sync/v9/sync'
+from todoist_api_python.api import TodoistAPI
+from todoist_api_python.models import Task
+api = TodoistAPI("778bc7bcc3a75d5837be9ba427447bbe59bbcce4")
 
-    #Este es el token proveido por la API para autorizar el consumo
-    #token = '778bc7bcc3a75d5837be9ba427447bbe59bbcce4'
-
-    #Este diccionario contiene el token para la autenticación
-    headers = {'Authorization': 'Bearer ' + token}
-    #Este diccionario contiene los parámetros del tipo de sincronización que queremos (completa) y el tipo de datos que queremos (proyectos)
-    params = {'sync_toke' : '*',
-            'resource_types' : '["projects"]'
-            }
-
-    #La variable data es donde se almacena los datos recibidos de la API mediante el método get y le enviamos la petición autorización (headers) y los parametros que queremos de retorno (params)
-    data = requests.get(url,headers=headers,params=params)
-
-    projects = []
-
-    #Con este condicional se verifica que el codigo devuelto por el servidor es 200 que indica que la petición se realizó con éxito
-    if data.status_code == 200:
-        #Convertimos los datos recibidos en formato JSON
-        data = data.json()
-        projects = data['projects']
-        print(projects[0])
+def getProjects():
+    try:
+        projects = api.get_projects()
+    except Exception as error:
+        print(error)
     return projects
+
+def getTasks():
+    try:
+        tasks = api.get_tasks()
+    except Exception as error:
+        print(error)
+    return tasks
+
+def getSections(id_project):
+    try:
+        sections = api.get_sections(project_id=id_project)
+    except Exception as error:
+        print(error)
+    return sections
+
+
+#Task of a project
+def get_Project_Tasks(project_name):
+    projects = getProjects()
+
+    for project in projects:
+        if project.name == project_name:
+            id = project.id
+
+    tasks = getTasks()
+    tasks_ret = tasks[:0]
+    #tasks = [task for task in tasks if not (task.project_id != id)]
+    for task in tasks:
+        if task.project_id == id:
+            tasks_ret.append(task)
+            
+    return tasks_ret
+
+#Task of the project "Sprint" in section "Diario"
+def get_Section_tasks(project_name, section_name):
+    projects = getProjects()
+
+    tasks = get_Project_Tasks(project_name)
+
+    for project in projects:
+        if project.name == project_name:
+            project_id = project.id
+
+    sections = getSections(project_id)
+
+    for section in sections:
+        if section.name == section_name:
+            section_id = section.id    
+
+    tasks_ret = tasks[:0]
+    for task in tasks:
+        if task.section_id == section_id:
+            tasks_ret.append(task)
+
+    return tasks_ret
